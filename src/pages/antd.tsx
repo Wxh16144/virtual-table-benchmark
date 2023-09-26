@@ -1,7 +1,7 @@
 import * as React from "react";
-
 import { Table } from 'antd'
 import type { ColumnType } from 'antd/es/table';
+import { useEventListener } from 'ahooks'
 import fakeData, { User, genSingleUser } from "../common/fakedata";
 import CellType from "../components/CellType";
 
@@ -21,6 +21,11 @@ const columns = Object.keys(genSingleUser()).map<ColumnType<User>>(key => ({
 
 function AntdTableDemo() {
   const [rows] = React.useState(fakeData);
+  const [verticalHeight, updateVerticalHeight] = React.useState(window.innerHeight);
+
+  useEventListener('resize', () => {
+    updateVerticalHeight(window.innerHeight);
+  }, { target: window, capture: false, once: false, passive: true });
 
   return (
     <Table<User>
@@ -30,9 +35,7 @@ function AntdTableDemo() {
       columns={columns}
       dataSource={rows}
       rowKey={v => v.userId}
-      scroll={{
-        y: window.innerHeight
-      }}
+      scroll={{ y: verticalHeight }}
       onRow={(record) => ({
         style: {
           maxHeight: 35,
