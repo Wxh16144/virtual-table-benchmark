@@ -9,8 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ctrl/tinycolor": "^4.0.2",
     "@faker-js/faker": "^8.1.0",
     "antd": "^5.9.3",
+    "antd-style": "^3.5.0",
     "dayjs": "^1.11.10",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
