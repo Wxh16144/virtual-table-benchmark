@@ -1,4 +1,5 @@
 import * as React from "react";
+import 'react-data-grid/lib/styles.css';
 
 export interface DataGridProps {
   slogan?: React.ReactNode;
