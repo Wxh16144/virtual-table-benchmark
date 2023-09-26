@@ -6,6 +6,7 @@ export interface AntdProps {
 
 function Antd(props: React.PropsWithChildren<AntdProps>) {
   const { children } = props;
+
   return (
     <>
       <div className="my-slogan">

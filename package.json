@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.1.0",
     "antd": "^5.9.3",
+    "dayjs": "^1.11.10",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-data-grid": "7.0.0-beta.39",

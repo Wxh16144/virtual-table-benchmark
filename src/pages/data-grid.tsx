@@ -1,22 +1,26 @@
 import * as React from "react";
 import 'react-data-grid/lib/styles.css';
+import fakeData, { User, genSingleUser } from "../common/fakedata";
+import DataGrid, { Column } from 'react-data-grid';
+import CellType from "../components/CellType";
 
-export interface DataGridProps {
-  slogan?: React.ReactNode;
+
+const columns = Object.keys(genSingleUser()).map<Readonly<Column<User>>>(key => ({
+  key,
+  name: key.toLocaleUpperCase(),
+  renderCell: ({ row }) => <CellType typeKey={key as keyof User} value={row[key as keyof User]} />
+}))
+
+const style: React.CSSProperties = {
+  height: '100vh',
 }
 
-function DataGrid(props: React.PropsWithChildren<DataGridProps>) {
-  const { children } = props;
+function DataGridDemo() {
+  const [rows] = React.useState(fakeData);
+
   return (
-    <>
-      <div className="my-slogan">
-        <p>魔法师正在进行最后的仪式，为您带来一项惊艳功能</p>
-        <strong>TBD: The Brilliant Discovery!</strong>
-      </div>
-      {children}
-      {/* This is DataGrid.tsx} */}
-    </>
+    <DataGrid style={style} rows={rows} columns={columns} rowKeyGetter={v => v.userId} />
   );
 }
 
-export default DataGrid;
+export default DataGridDemo;
