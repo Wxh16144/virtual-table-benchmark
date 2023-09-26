@@ -1,22 +1,45 @@
 import * as React from "react";
 
-export interface AntdProps {
-  slogan?: React.ReactNode;
-}
+import { Table } from 'antd'
+import type { ColumnType } from 'antd/es/table';
+import fakeData, { User, genSingleUser } from "../common/fakedata";
+import CellType from "../components/CellType";
 
-function Antd(props: React.PropsWithChildren<AntdProps>) {
-  const { children } = props;
+const columns = Object.keys(genSingleUser()).map<ColumnType<User>>(key => ({
+  title: key.toLocaleUpperCase(),
+  dataIndex: key,
+  key: key,
+  render: (value) => (
+    <CellType typeKey={key as keyof User} value={value} />
+  ),
+  onCell: () => ({
+    style: {
+      padding: '0 8px'
+    }
+  }),
+}))
+
+function AntdTableDemo() {
+  const [rows] = React.useState(fakeData);
 
   return (
-    <>
-      <div className="my-slogan">
-        <p>魔法师正在进行最后的仪式，为您带来一项惊艳功能</p>
-        <strong>TBD: The Brilliant Discovery!</strong>
-      </div>
-      {children}
-      {/* This is antd.tsx} */}
-    </>
+    <Table<User>
+      bordered
+      virtual
+      pagination={false}
+      columns={columns}
+      dataSource={rows}
+      rowKey={v => v.userId}
+      scroll={{
+        y: window.innerHeight
+      }}
+      onRow={(record) => ({
+        style: {
+          maxHeight: 35,
+        }
+      })}
+    />
   );
 }
 
-export default Antd;
+export default AntdTableDemo;

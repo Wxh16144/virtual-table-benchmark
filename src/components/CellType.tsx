@@ -13,7 +13,7 @@ export interface CellTypeProps {
 type Comp = React.FC<CellTypeProps>;
 
 const map: Partial<Record<Key, Comp>> = {
-  userId: ({ value }) => <Typography.Text>{value}</Typography.Text>,
+  userId: ({ value }) => <Typography.Text ellipsis>{value}</Typography.Text>,
   avatar: ({ value }) => <Avatar src={value} alt={value} />,
   birthDate: ({ value }) => <DatePicker value={dayjs(value)} disabled bordered={false} />,
   email: ({ value }) => <Input value={value} readOnly bordered={false} />,
