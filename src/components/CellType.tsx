@@ -14,7 +14,8 @@ type Comp = React.FC<CellTypeProps>;
 
 const map: Partial<Record<Key, Comp>> = {
   userId: ({ value }) => <Typography.Text ellipsis>{value}</Typography.Text>,
-  avatar: ({ value }) => <Avatar src={value} alt={value} />,
+  // avatar: ({ value }) => <Avatar src={value} alt={value} />,
+  avatar: ({ value }) => <Avatar>{String(value).at(-1)}</Avatar>,
   birthDate: ({ value }) => <DatePicker value={dayjs(value)} disabled bordered={false} />,
   email: ({ value }) => <Input value={value} readOnly bordered={false} />,
   username: ({ value }) => <Input value={value} readOnly bordered={false} />,
