@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.0.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@faker-js/faker": "^8.1.0",
+    "@mui/material": "^5.14.12",
+    "@mui/x-date-pickers": "^6.16.1",
     "ahooks": "^3.7.8",
     "antd": "^5.9.3",
     "antd-style": "^3.5.0",
