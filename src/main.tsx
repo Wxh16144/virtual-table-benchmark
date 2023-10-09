@@ -7,6 +7,7 @@ import { createGlobalStyle, ThemeProvider } from 'antd-style'
 
 // @ts-ignore
 import routes from '~react-pages';
+import MuiThemeProvider from './common/mui';
 
 window.console.log('%cPlayground => main.tsx', 'color:#0B7EA4;', {
   routes,
@@ -23,10 +24,12 @@ const Global = createGlobalStyle`
 `;
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <ThemeProvider themeMode="auto">
-    <Global />
-    <Router>
-      <App />
-    </Router>
-  </ThemeProvider>
+  <MuiThemeProvider>
+    <ThemeProvider themeMode="auto">
+      <Global />
+      <Router>
+        <App />
+      </Router>
+    </ThemeProvider>
+  </MuiThemeProvider>
 );

@@ -1,27 +1,16 @@
 import * as React from "react";
 import { User } from "../common/fakedata";
-import { Typography, Avatar, DatePicker, Input } from "antd";
-import dayjs from "dayjs";
+import { antdCompMap } from "./antdCompMap";
+import { muiCompMap } from "./muiCompMap";
 
-type Key = keyof User;
+export type Key = keyof User;
 
 export interface CellTypeProps {
   typeKey: Key
   value: any
 }
 
-type Comp = React.FC<CellTypeProps>;
-
-const map: Partial<Record<Key, Comp>> = {
-  userId: ({ value }) => <Typography.Text ellipsis>{value}</Typography.Text>,
-  // avatar: ({ value }) => <Avatar src={value} alt={value} />,
-  avatar: ({ value }) => <Avatar>{String(value).at(-1)}</Avatar>,
-  birthDate: ({ value }) => <DatePicker value={dayjs(value)} disabled bordered={false} />,
-  email: ({ value }) => <Input value={value} readOnly bordered={false} />,
-  username: ({ value }) => <Input value={value} readOnly bordered={false} />,
-  password: ({ value }) => <Input.Password value={value} readOnly bordered={false} />,
-  registeredAt: ({ value }) => <DatePicker value={dayjs(value)} disabled bordered={false} />,
-}
+export type Comp = React.FC<CellTypeProps>;
 
 const FallBack: Comp = ({ value, typeKey }) => {
   const tryValue = React.useMemo(() => {
@@ -38,7 +27,7 @@ const FallBack: Comp = ({ value, typeKey }) => {
 }
 
 function CellType(props: CellTypeProps) {
-  const C = map[props.typeKey] ?? FallBack
+  const C = muiCompMap[props.typeKey] ?? FallBack
 
   return (
     <C {...props} />
