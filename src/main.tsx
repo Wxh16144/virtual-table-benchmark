@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
 import { createGlobalStyle, ThemeProvider } from 'antd-style'
+import { ConfigProvider } from 'antd'
 
 // @ts-ignore
 import routes from '~react-pages';
@@ -24,9 +25,11 @@ const Global = createGlobalStyle`
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ThemeProvider themeMode="auto">
-    <Global />
-    <Router>
-      <App />
-    </Router>
+    <ConfigProvider theme={{ cssVar: true }}>
+      <Global />
+      <Router>
+        <App />
+      </Router>
+    </ConfigProvider >
   </ThemeProvider>
 );
